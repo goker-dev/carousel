@@ -177,7 +177,8 @@
                 }
                 $('.custom-carousel').carousel({
                     animate : function(carousel, direction, to, isDone){
-                        this.start(carousel);
+                        $this = this;
+                        $this.start(carousel);
                         var speed = isDone ? 200 : 800;
                         carousel.wagon.animate({
                             'left': [to +'px', 'custom'] 
@@ -187,13 +188,13 @@
                                     'left': direction == 'right' ? -carousel.way: 0 
                                 }, speed, function(){
                                     carousel.animating = false;
-                                    this.finish(carousel);
-                                }.bind(this));
+                                    $this.finish(carousel);
+                                });
                             } else {
                                 carousel.animating = false;
-                                this.finish(carousel);
+                                $this.finish(carousel);
                             }
-                        }.bind(this));
+                        });
                     }
                 });
             </script>
