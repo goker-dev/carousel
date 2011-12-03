@@ -1,5 +1,5 @@
 /* CAROUSEL
-/*--------------------------------------------------*/
+==============================================================================*/
 .carousel {
     height: 220px;
 }
@@ -8,7 +8,7 @@
 }
 .carousel-left, .carousel-right {
     float:left;
-    width: 10px;
+    width: 20px;
     height: 160px;
     background: url(carousel-sprite.png) no-repeat;
     background-position: left center;
@@ -59,6 +59,36 @@
     line-height: 18px;
 }
 
+/* CAROUSEL CONTEXTMENU
+------------------------------------------------------------------------------*/
+#contextmenu {
+    min-width: 160px;
+    font-size: smaller;
+    border: 1px solid #ddd;
+    background: #f7f7f7;
+    cursor: pointer;
+}
+#contextmenu a, #contextmenu a:visited {
+    display: block;
+    margin: 0 5px;
+    padding: 8px 10px;
+    color: #555;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #e3e3e3;
+    text-decoration: none;  
+}
+#contextmenu a:first-child {
+    border-top: 0;
+}
+#contextmenu a:last-child {
+    border-bottom: 0;
+}
+#contextmenu a:hover, #contextmenu a:focus {
+    color: #333;
+} 
+
+/* CAROUSEL CUSTOM
+------------------------------------------------------------------------------*/
 .custom-carousel, .custom-carousel .carousel-rail {
     height: 240px;
 }
