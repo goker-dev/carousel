@@ -1,39 +1,151 @@
-/* carousel 1.1.0 */
-(function($){
-    // Methods
-    var methods = {
-        init    : function(element, options){
-            var $this = this;
-            // Bind options
-            var carousel =  $.extend(element, options);
-            carousel.init();
-            carousel.animating = false;
-            $this.set(carousel);
+/*
+ * jQuery carousel plugin
+ * Version: 1.2.0 
+ * Date (d/m/y): 02/09/12
+ * Original author: @gokercebeci 
+ * Licensed under the MIT license
+ * Demo: http://gokercebeci.com/dev/carousel
+ */
+
+(function ( $, window, document, undefined ) {
+
+    var pluginName = 'carousel',
+    methods = {
+        animate : function($this, direction, to, isDone){
+            var finish = this.finish;
+            var duration = isDone ? 200 : 800;
+            $this.wagon.animate({
+                'left': to +'px' 
+            }, duration, 'carousel', function(){
+                if(isDone){
+                    $this.wagon.animate({
+                        'left': direction == 'right' ? -$this.way: 0 
+                    }, duration, 'carousel', function(){
+                        $this.animating = false;
+                        finish($this);
+                    });
+                } else {
+                    $this.animating = false;
+                    finish($this);
+                }
+            });
+        }
+    },
+    defaults = {
+        init    : function(){},
+        start   : function(){},
+        finish  : function(){},
+        error   : function(){},
+        autoplay: false,
+        animate : methods.animate,
+        click   : methods.click,
+        menu    : ['play','pause','left','right']
+    };
+    function Plugin( element, options ) {
+        this.element = element;
+        this.options = $.extend( {}, defaults, options) ;
+        this._defaults = defaults;
+        this._name = pluginName;
+        this.init();
+    }
+    Plugin.prototype = {
+        init: function() {
+            this.options.init(this);
+            var $this =  this;
+            var el =  $(this.element);
+            this.animating = false;
+            this.set();
             // Events
-            carousel.find('.carousel-right').click(function(){
-                $this.left(carousel);
+            el.find('.carousel-right').click(function(){
+                $this.pause();
+                $this.right();
             });
-            carousel.find('.carousel-left').click(function(){
-                $this.right(carousel);
+            el.find('.carousel-left').click(function(){
+                $this.pause();
+                $this.left();
             });
-            carousel.items.click(function(){
-                carousel.click($(this));
+            this.items.click(function(e){
+                $this.click(e,this);
             });
             // for Media Queries & Mobile Devices
             $(document).resize(function(){
-                $this.set(carousel);
+                $this.set();
             });
             // context menu
-            $this.contextmenu(carousel);
+            this.contextmenu(el);
             // CUSTOM EASING
             $.easing.carousel = function(x, t, b, c, d){
                 return c*((t=t/d-1)*t*t + 1) + b;
             }
-            return false;
+            if(this.options.autoplay){
+                this.play();
+            }
+        }, 
+        set: function() {
+            var el =  $(this.element);
+            this.rail      = el.find('.carousel-rail');
+            this.wagon     = el.find('.carousel-wagon');
+            this.items     = el.find('.carousel-item');
+            this.step      = this.items.outerWidth(1);
+            var h = 0;
+            this.items.each(function(){
+                h = h > $(this).height() ? h : $(this).height()
+            });
+            this.items.find('article').height(h);
+            h = this.items.height();
+            this.rail.height(h);
+            el.height(h);
+            this.wagon.css({
+                left  : 0,
+                width : (this.items.length * this.step),
+                height: h
+            });
+            this.way       = this.wagon.width() - this.rail.width();  
+        }, 
+        left: function() {
+            if(!this.animating){
+                this.animating = true;
+                if(parseInt(this.wagon.css('left')) < 0)
+                    this.animate('left', (parseInt(this.wagon.css('left')) +this.step));
+                else 
+                    this.animate('left', 20, true);
+            }
         },
-        contextmenu: function(carousel){
+        right: function() {
+            if(!this.animating){
+                this.animating = true;
+                if(parseInt(this.wagon.css('left')) *-1 < this.way)
+                    this.animate('right', parseInt(this.wagon.css('left')) -this.step);
+                else if(this.options.autoplay)
+                    this.animate('left', 0)
+                else
+                    this.animate('right', -this.way -20, true);
+            }
+        }, 
+        animate: function(direction, to, isDone){
+            this.options.start(this);
+            this.options.animate(this, direction, to, isDone);
+        }, 
+        click: function(e, el){
+            this.options.click(this, e, el);
+        }, 
+        play: function(){
+            if(this.timer){
+                clearTimeout(this.timer);
+            }
+            this.right(this);
+            this.options.autoplay = true;
+            this.timer = setTimeout($.proxy(this.play, this), 2000);
+        }, 
+        pause: function(){
+            if(this.timer){
+                clearTimeout(this.timer);
+            }
+            this.options.autoplay = false;
+        }, 
+        contextmenu: function() {
             var $this = this;
-            carousel.bind({
+            $(this.element).bind({
                 'contextmenu':function(e){
                     if(!e.ctrlKey){
                         e.preventDefault();
@@ -45,18 +157,31 @@
                             'z-index': '10000'
                         })   
                         .appendTo($('body'));
+                        // play & pause
                         $('<a>').click(function(){
-                            $this.left(carousel);
+                            if($this.options.autoplay){
+                                $this.pause();
+                                $(this).html($this.options.menu[0]);
+                            } else {
+                                $this.play();
+                                $(this).html($this.options.menu[1]);
+                            }
                         })
-                        .html(carousel.menu[0]).appendTo(c);
+                        .html($this.options.menu[$this.options.autoplay ? 1 : 0]).appendTo(c);
+                        // left
                         $('<a>').click(function(){
-                            $this.right(carousel);
+                            $this.left();
                         })
-                        .html(carousel.menu[1]).appendTo(c);
+                        .html($this.options.menu[2]).appendTo(c);
+                        // right
+                        $('<a>').click(function(){
+                            $this.right();
+                        })
+                        .html($this.options.menu[3]).appendTo(c);
                         $('<a>',{
                             'href':'http://gokercebeci.com/dev/carousel'
                         })
-                        .html('carousel v1.1.0').appendTo(c);
+                        .html('carousel v1.1.1').appendTo(c);
                         // Set position
                         var ww = $(document).width();
                         var wh = $(document).height();
@@ -87,83 +212,16 @@
             .resize(function(){
                 $('#contextmenu').remove();
             });
-        },
-        set     : function(carousel){
-            carousel.rail      = carousel.find('.carousel-rail');
-            carousel.wagon     = carousel.find('.carousel-wagon');
-            carousel.items     = carousel.find('.carousel-item');
-            carousel.step      = carousel.items.outerWidth(1);
-            carousel.wagon.css({
-                left : 0,
-                width: (carousel.items.length * carousel.step)
-            });
-            carousel.way       = carousel.wagon.width() - carousel.rail.width();  
-        },
-        left     : function(carousel){
-            if(!carousel.animating){
-                carousel.animating = true;
-                if(parseInt(carousel.wagon.css('left')) < 0)
-                    carousel.animate(carousel, 'left', (parseInt(carousel.wagon.css('left')) +carousel.step));
-                else 
-                    carousel.animate(carousel, 'left', 20, true);
-            }
-        },
-        right    : function(carousel){
-            if(!carousel.animating){
-                carousel.animating = true;
-                if(parseInt(carousel.wagon.css('left')) *-1 < carousel.way)
-                    carousel.animate(carousel, 'right', parseInt(carousel.wagon.css('left')) -carousel.step);
-                else
-                    carousel.animate(carousel, 'right', -carousel.way -20, true);
-            }
-        },
-        start   : function(carousel){
-            carousel.start(carousel);
-            return;
-        },
-        finish  : function(carousel){
-            carousel.finish(carousel);
-            return;
-        },
-        error   : function(carousel){
-            carousel.error(carousel);
-            return;
-        },
-        animate : function(carousel, direction, to, isDone){
-            var $this = this;
-            $this.start(carousel);
-            var duration = isDone ? 200 : 800;
-            carousel.wagon.animate({
-                'left': to +'px' 
-            }, duration, 'carousel', function(){
-                if(isDone){
-                    carousel.wagon.animate({
-                        'left': direction == 'right' ? -carousel.way: 0 
-                    }, duration, 'carousel', function(){
-                        carousel.animating = false;
-                        $this.finish(carousel);
-                    });
-                } else {
-                    carousel.animating = false;
-                    $this.finish(carousel);
-                }
-            });
-        },
-        click   : function(item){
         }
     };
-    $.fn.carousel = function(options) {
-        options = $.extend({
-            init    : function(){},
-            start   : function(){},
-            finish  : function(){},
-            error   : function(){},
-            animate : methods.animate,
-            click   : methods.click,
-            menu    : ['left','right']
-        }, options);
-        this.each(function(){
-            methods.init($(this), options);
+
+    $.fn[pluginName] = function ( options ) {
+        return this.each(function () {
+            if (!$.data(this, 'plugin_' + pluginName)) {
+                $.data(this, 'plugin_' + pluginName,
+                    new Plugin( this, options ));
+            }
         });
-    };
-})(jQuery);
+    }
+
+})( jQuery, window, document );

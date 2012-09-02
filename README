@@ -1,14 +1,15 @@
-carousel is a carousel jQuery plug-in.
-It has customizable animations/effects. You can change animations/effects with plug-in options easily.
-Carousel reads all dimension values from CSS and the plug-in's options doesn't have any dimension values.
+jQuery CAROUSEL v1.2.0
 
-I developed it to use on my Uygulama project's new version.
+Carousel is a carousel slider jQuery plugin.
+It has auto sliding and customizable animations/effects. You can change animations/effects with plugin options easily.
+Carousel reads all dimension values from CSS and the plugin's options doesn't have any dimension values.
 
-I've only tested it on 
-  * Chromium (14.0.835.202), 
-  * Google Chrome (15.0.874.120), 
-  * Mozilla Firefox (3.6.17), 
-  * Opera (11.52) 
+I've only tested it on
+  * Chromium (18.0.1025.168),
+  * Google Chrome (23.0.1246.0),
+  * Mozilla Firefox (15.0),
+  * Opera (12.02)
+  * Internet Explorer (8.0.6001)
 and it works enough for me for now!
 
 It is under MIT License.

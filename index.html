@@ -1,25 +1,29 @@
 <!DOCTYPE html> 
 <html lang="en"> 
     <head>
-        <meta charset="UTF-8" />
+        <meta charset="utf-8" />
         <title>carousel</title>
-        <meta name="description" content="carousel is a carousel jQuery plug-in. It has customizable animations/effects." />
-        <meta name="keywords" content="carousel, jquery carousel, customization, ajax, slide, css, jquery plug-in" />
+        <meta name="description" content="carousel is a carousel slider jQuery plugin. It has customizable animations/effects." />
+        <meta name="keywords" content="carousel, carousel slider, jquery carousel, customization, ajax, slide, css, jquery plugin" />
         <link type="text/plain" rel="author" href="http://gokercebeci.com/humans.txt" />
         <link rel="shortcut icon" href="http://gokercebeci.com/favicon.ico" type="image/x-icon" />
         <style>
             body { margin: 0; padding: 0; color:#333; font: normal 13px/1.264 sans-serif; }
+            img { border:0 }
+            .clearfix { clear:both; }
             #devcontainer { margin: 20px auto; padding: 0 10px; width: 940px; }
-            .codeblock {
-                margin: 5px 0;
-                padding:10px;
-                color: #ddd;
-                border: 2px solid #000;
+            pre, code { 
+                display: block;
+                padding: 10px;
+                color: #eee;
+                border: 1px solid #222;
                 background: #333;
+                font-family: monospace, monospace; 
+                _font-family: 'courier new', monospace; 
+                font-size: 1em;
             }
-            .codeblock p{padding-top:10px; }
-            #area { float:left; width: 460px; }
-            .desc { float:right; width: 460px; }
+            #area { float:left; width: 480px; }
+            .desc { float:right; width: 440px; }
             .signature a { color:#555; text-decoration:none; }
             .signature img { margin-right:5px; vertical-align: middle; }
         </style>
@@ -30,36 +34,35 @@
         <div id="devcontainer">
             <!-- development area -->
 
-
             <!-- SAMPLE -->
             <section>
                 <h2>SAMPLE</h2>
                 <!-- description -->
                 <div class="desc">
-                    <h1>jQuery CAROUSEL v1.1.0</h1>
+                    <h1>jQuery CAROUSEL v1.2.0</h1>
                     <hr>
-                    <p><b>carousel</b> is a carousel jQuery plug-in.</p>
-                    <p>It has customizable animations/effects. You can change animations/effects with plug-in options easily.</p>
-                    <p><b>Carousel</b> reads all dimension values from CSS and the plug-in's options 
+                    <p><b>Carousel</b> is a carousel slider jQuery plugin.</p>
+                    <p>It has auto sliding and customizable animations/effects. You can change animations/effects with plugin options easily.</p>
+                    <p><b>Carousel</b> reads all <b>dimension</b> values from <b>CSS</b> and the plugin's options 
                         doesn't have any dimension values.</p>
-                    <p>I developed it to use on my <a href="http://uygulama.net" title="uygulama">Uygulama</a> project's new version.</p>
                     <p>I've only tested it on</p>
                     <ul>
-                        <li><b>Chromium (14.0.835.202)</b>, </li>
-                        <li><b>Google Chrome (15.0.874.120)</b>, </li>
-                        <li><b>Mozilla Firefox (3.6.17)</b>, </li>
-                        <li><b>Opera (11.52)</b> </li>
+                        <li><b>Chromium (18.0.1025.168)</b>, </li>
+                        <li><b>Google Chrome (23.0.1246.0)</b>, </li>
+                        <li><b>Mozilla Firefox (15.0)</b>, </li>
+                        <li><b>Opera (12.02)</b> </li>
                         <li><b>Internet Explorer (8.0.6001)</b> </li>
                     </ul>
                     <p>and it works enough for me for now!</p>
                     <p>It is under MIT License.</p>
+                    <p><i>The version published on <span class="date">September 02, 2012</span>.<i></p>
                     <p class="signature"><a href="http://gokercebeci.com/dev/" title="developer">
                             <img src="http://geticon.org/of/gokercebeci.com" alt="developer" />
                             goker.cebeci, the developer</a></p>
                     <p class="signature"><a href="https://github.com/gokercebeci/carousel">
                             <img src="http://geticon.org/of/github.com" alt="github" />
-                            download or fork it on github</a></p>
-                    <p class="signature"><a href="http://plugins.jquery.com/project/carousel">
+                            fork it on github</a></p>
+                    <p class="signature"><a href="http://archive.plugins.jquery.com/project/carouselslider">
                             <img src="http://geticon.org/of/jquery.com" alt="jquery" />
                             jquery plugin page</a></p>
                 </div>
@@ -94,10 +97,61 @@
                         </div>
                         <div class="carousel-right"></div>
                     </div>
-                    <div class="clear"></div>
+                    <div class="clearfix"></div>
+
+                    <h3>CAROUSEL with AUTO SLIDING</h3>
+                    <div class="auto-carousel">
+                        <div class="carousel-left"></div>
+                        <div class="carousel-rail">
+                            <div class="carousel-wagon">
+                                <div class="carousel-item">
+                                    <article>
+                                        <img src="thumb_01.jpg" alt="image alt" />
+                                    </article>
+                                </div>
+                                <div class="carousel-item">
+                                    <article>
+                                        <img src="thumb_02.jpg" alt="image alt" />
+                                    </article>
+                                </div>
+                                <div class="carousel-item">
+                                    <article>
+                                        <img src="thumb_03.jpg" alt="image alt" />
+                                    </article>
+                                </div>
+                                <div class="carousel-item">
+                                    <article>
+                                        <img src="thumb_04.jpg" alt="image alt" />
+                                    </article>
+                                </div>
+                                <div class="carousel-item">
+                                    <article>
+                                        <img src="thumb_05.jpg" alt="image alt" />
+                                    </article>
+                                </div>
+                                <div class="carousel-item">
+                                    <article>
+                                        <img src="thumb_06.jpg" alt="image alt" />
+                                    </article>
+                                </div>
+                                <div class="carousel-item">
+                                    <article>
+                                        <img src="thumb_07.jpg" alt="image alt" />
+                                    </article>
+                                </div>
+                                <div class="carousel-item">
+                                    <article>
+                                        <img src="thumb_08.jpg" alt="image alt" />
+                                    </article>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-right"></div>
+                    </div>
+                    <div class="clearfix"></div>
 
                     <h3>CAROUSEL with CUSTOM ANIMATE</h3>
-
                     <div class="custom-carousel">
                         <div class="carousel-left"></div>
                         <div class="carousel-rail">
@@ -130,12 +184,15 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-
                 <script src="carousel.js"></script>
                 <link rel="stylesheet" href="carousel.css" />
                 <script>
                     $('.carousel').carousel();
                 
+                    $('.auto-carousel').carousel({
+                        autoplay: true
+                    });
+                    
                     $.easing.custom = function(m, t, b, c, d){
                         if ((t/=d) < (1/2.75)){
                             return c*(7.5625*t*t) + b;
@@ -177,36 +234,81 @@
             <!-- USAGE -->
             <section>
                 <h2>USAGE</h2>
-                <code>
-                    &lt;div class="carousel"&gt;<br>
-                    &nbsp;&lt;div class="carousel-rail"&gt;<br>
-                    &nbsp;&nbsp;&lt;div class="carousel-wagon"&gt;<br>
-                    &nbsp;&nbsp;&nbsp;&lt;div class="carousel-item"&gt;<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;[YOUR CONTENT]<br>
-                    &nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
-                    &nbsp;&nbsp;&lt;/div&gt;<br>
-                    &nbsp;&lt;/div&gt;<br>
-                    &lt;/div&gt;
-                    <p>&lt;script&gt;<br/>
-                        &nbsp;&nbsp;$('.carousel').forma([options]);<br/>
-                        &lt;/script&gt;<br>
-                        &lt;link rel="stylesheet" href="carousel.css" /&gt;</p>
-                </code>
+                <pre><code>
+&lt;div class="carousel"&gt;
+    &lt;div class="carousel-rail"&gt
+        &lt;div class="carousel-wagon"&gt;
+            &lt;div class="carousel-item"&gt;
+            [YOUR CONTENT]
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script src="carousel.js"&gt&lt;/script&gt;
+&lt;link rel="stylesheet" href="carousel.css" /&gt;
+&lt;script&gt;
+    $('.carousel').forma([options]);
+&lt;/script&gt;
+                </code></pre>
             </section>
             <!-- /USAGE -->
 
             <!-- OPTIONS -->
             <section>
                 <h2>OPTIONS</h2>
-                <pre>
-                    init    : Optional init function.
-                    start   : Optional start function.
-                    finish  : Optional finish function.
-                    animate : Optional animate function.
-                    click   : Optional click function.
-                </pre>
+                <pre><code>
+init    : function(){}, // Optional init function.
+start   : function(){}, // Optional start function.
+finish  : function(){}, // Optional finish function. 
+error   : function(){}, // Optional error function.
+autoplay: false,        // default false.
+animate : methods.animate, // Optional animate function.
+click   : methods.click,   // Optional click function.
+menu    : ['play','pause','left','right'] // context menu labels
+                </code></pre>
             </section>
             <!-- /OPTIONS -->
+            <!-- ANIMATIONS -->
+            <section>
+                <h2>ANIMATIONS</h2>
+                <pre>
+<code>
+$.easing.custom = function(m, t, b, c, d){
+    if ((t/=d) < (1/2.75)){
+        return c*(7.5625*t*t) + b;
+    } else if (t < (2/2.75)){
+        return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+    } else if (t < (2.5/2.75)){
+        return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+    } else {
+        return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+    }
+}
+$('.custom-carousel').carousel({
+    animate : function(carousel, direction, to, isDone){
+        $this = this;
+        $this.start(carousel);
+        var speed = isDone ? 200 : 800;
+        carousel.wagon.animate({
+            'left': [to +'px', 'custom'] 
+        }, speed, function(){
+            if(isDone){
+                carousel.wagon.animate({
+                    'left': direction == 'right' ? -carousel.way: 0 
+                }, speed, function(){
+                    carousel.animating = false;
+                    $this.finish(carousel);
+                });
+            } else {
+                carousel.animating = false;
+                $this.finish(carousel);
+            }
+        });
+    }
+});
+                </code></pre>
+            </section>
+            <!-- /ANIMATIONS -->
 
             <!-- /development area -->
         </div>
