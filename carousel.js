@@ -1,6 +1,6 @@
 /*
  * jQuery carousel plugin
- * Version: 1.2.0 
+ * Version: 2.0.0 
  * Date (d/m/y): 02/09/12
  * Original author: @gokercebeci 
  * Licensed under the MIT license
@@ -181,7 +181,7 @@
                         $('<a>',{
                             'href':'http://gokercebeci.com/dev/carousel'
                         })
-                        .html('carousel v1.1.1').appendTo(c);
+                        .html('carousel v.2.0.0').appendTo(c);
                         // Set position
                         var ww = $(document).width();
                         var wh = $(document).height();
