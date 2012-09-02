@@ -181,7 +181,7 @@
                         $('<a>',{
                             'href':'http://gokercebeci.com/dev/carousel'
                         })
-                        .html('carousel v.2.0.0').appendTo(c);
+                        .html('carousel v2.0.0').appendTo(c);
                         // Set position
                         var ww = $(document).width();
                         var wh = $(document).height();
