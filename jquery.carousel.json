@@ -1,0 +1,35 @@
+{
+  "name": "carousel",
+  "title": "jQuery Carousel",
+  "description": "jQuery plugin for carousel image sliding.",
+  "keywords": [
+    "carousel",
+    "slider",
+    "slide",
+    "image",
+    "photo"
+  ],
+  "version": "2.0.0",
+  "author": {
+    "name": "goker.cebeci"
+  },
+  "maintainers": [
+    {
+      "name": "Goker Cebeci",
+      "url": "http://gokercebeci.com"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/gokercebeci/carousel/LICENSE"
+    }
+  ],
+  "bugs": "https://github.com/gokercebeci/carousel/issues",
+  "homepage": "http://gokercebeci.com/dev/carousel",
+  "docs": "https://github.com/gokercebeci/carousel",
+  "download": "http://code.jquery.com/#carousel",
+  "dependencies": {
+    "jquery": ">=1.5"
+  }
+}
