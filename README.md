@@ -18,6 +18,8 @@ Carousel reads all dimension values from CSS and the plug-in's options doesn't h
  *  Opera (11.52) 
  *  Internet Explorer (8.0.6001)
 
+You can check it on [gokercebeci.com/dev/carousel](http://gokercebeci.com/dev/carousel).
+
 Usage
 -----
 
