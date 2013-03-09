@@ -1,0 +1,36 @@
+{
+    "name": "carousel",
+    "title": "jQuery Carousel",
+    "description": "jQuery plugin for carousel image sliding. It has auto sliding and customizable animations/effects. You can change animations/effects with plugin options easily.",
+    "keywords": [
+        "carousel",
+        "slider",
+        "slide",
+        "image",
+        "photo",
+        "custom"
+    ],
+    "version": "2.0.0",
+    "author": {
+        "name": "goker.cebeci"
+    },
+    "maintainers": [
+        {
+            "name": "Goker Cebeci",
+            "url": "http://gokercebeci.com"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/gokercebeci/carousel/LICENSE"
+        }
+    ],
+    "bugs": "https://github.com/gokercebeci/carousel/issues",
+    "homepage": "http://gokercebeci.com/dev/carousel",
+    "docs": "https://github.com/gokercebeci/carousel",
+    "download": "http://gokercebeci.com/dev/carousel",
+    "dependencies": {
+        "jquery": ">=1.5"
+    }
+}
