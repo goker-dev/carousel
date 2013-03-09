@@ -8,8 +8,8 @@ Carousel
  *  Customizable animations/effects
  *  Context menu (right click) control
  
-You can change animations/effects with plugin options easily.
-Carousel reads all dimension values from CSS and the plug-in's options doesn't have any dimension values.
+You can change [**animations/effects**](#animations) with plugin options easily.
+Carousel reads all dimension values from CSS and the plug-in's [**options**](#options) doesn't have any dimension values.
 
 ### Tested on: 
  *  Chromium (14.0.835.202)
