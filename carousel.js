@@ -1,7 +1,7 @@
 /*
  * jQuery carousel plugin
- * Version: 2.0.0 
- * Date (d/m/y): 02/09/12
+ * Version: 2.0.1 
+ * Date (d/m/y): 18/01/13
  * Original author: @gokercebeci 
  * Licensed under the MIT license
  * Demo: http://gokercebeci.com/dev/carousel
